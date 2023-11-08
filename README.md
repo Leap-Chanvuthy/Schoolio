@@ -21,4 +21,18 @@ __Technologies & tools__
 - Postman : An (ADE) API Development Environment for develope and test APIs .
 
 __GitHub Repository__
-[Visit](https://github.com/Leap-Chanvuthy/Schoolio.git)
+[https://github.com/Leap-Chanvuthy/Schoolio.git]
+
+
+__Project Installation__
+{
+    "Change directory to schoolio folder" : "cd Schoolio"
+}
+
+{
+    "Install neccessary dependencies" : "npm install"
+}
+
+{
+    "Start sever development environment" : "npm run dev"
+}
