@@ -1,9 +1,9 @@
 
 function App() {
   return (
-    <h1 className="text-3xl text-red-500 font-bold underline">
-      Hello world!
-    </h1>
+    <div>
+        <h4 className="text-red-500">Hello this is Schoolio </h4>
+    </div>
   )
 }
 
