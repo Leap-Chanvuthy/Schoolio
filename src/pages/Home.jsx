@@ -1,9 +1,10 @@
 import Book from "../components/Books/Books";
 import Navbar from "../components/layouts/Navbar";
 
+
 const Home = () => {
     return ( 
-        <div className="w-full h-full bg-gradient-to-b from-secondary to-primary pb-10">\
+        <div className="w-full h-full bg-gradient-to-b from-secondary to-primary pb-10">
             <Navbar/>
            <div className="flex lg:flex-row sm:flex-col justify-between items-center gap-4 px-16 text-gray-400 pb-16">
                 {/* left */}
