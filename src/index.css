@@ -13,3 +13,9 @@
 #khmer{
     font-family: 'Noto Sans Khmer', sans-serif;
 }
+
+@media (max-width: 575px) {
+    .responsive {
+      display: none;
+    }
+  }

@@ -25,14 +25,11 @@ __GitHub Repository__
 
 
 __Project Installation__
-{
-    "Change directory to schoolio folder" : "cd Schoolio"
-}
 
-{
-    "Install neccessary dependencies" : "npm install"
-}
+   -  "Change directory to schoolio folder" : "cd Schoolio"
+   -  "Install neccessary dependencies" : "npm install"
+   -  "Start sever development environment" : "npm run dev"
 
-{
-    "Start sever development environment" : "npm run dev"
-}
+__Home Page__
+
+!(/public/homepage.png =200x100)
