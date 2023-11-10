@@ -10,7 +10,7 @@ const Home = () => {
                 {/* left */}
                 <div>
                     <h1 className="font-bold text-4xl py-5">We share books to the world . Your Gateway to a World of Knowledge !</h1>
-                    <p className="text-md">Simply upload your PDF file, add a captivating description, and let your words reach a global audience.</p>
+                    <p className="text-lg">ចែករំលែកសៀវភៅដល់មនុស្សគ្រប់គ្នាក្នុងគោលបំណងអភិវឌ្ឈន៍ចំណេះដឹងតាមបច្ចេកវិទ្យាឌីជីថល</p>
                     <button className="bg-gradient-to-r from-primary to-pink-500 px-4 py-1 font-bold my-10 rounded-sm text-white">Explore</button>
                 </div>
                 {/* right */}
