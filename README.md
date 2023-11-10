@@ -32,4 +32,4 @@ __Project Installation__
 
 __Home Page__
 
-!(/public/homepage.png =200x100)
+<img width="400" src="public/homepage.png" alt="homepage">
