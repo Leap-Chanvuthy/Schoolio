@@ -8,6 +8,9 @@ module.exports = {
       colors:{
         primary : '#201E2C',
         secondary : '#1A2A39'
+      },
+      fontFamily:{
+        Noto_Sans_Khmer : ['Noto Sans Khmer', 'sans-serif']
       }
     },
   },
