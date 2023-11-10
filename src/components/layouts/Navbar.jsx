@@ -1,51 +1,73 @@
-import { useState } from 'react';
-import {BiUpload} from 'react-icons/bi';
-import {HiX} from "react-icons/hi";
-import {GiHamburgerMenu} from "react-icons/gi";
+import React, { useState } from 'react';
+import {RiUpload2Fill} from 'react-icons/ri';
+import {LuHome} from "react-icons/lu";
+import {BsPatchExclamation} from "react-icons/bs"
+import 'flowbite';
 
 const Navbar = () => {
-    const [openNav , setOpenNav] = useState(false);
-    const toggleNav = () => {
-        setOpenNav(!openNav);
-    }
-    return ( 
-        <div className="bg-secondary p-10  font-bold text-gray-400">
-            <div className="responsive flex justify-between items-center">
-                <div>
-                    <h2>Logo</h2>
+  const [isDropdownVisible, setDropdownVisibility] = useState(false);
+
+  const toggleDropdown = () => {
+    setDropdownVisibility(!isDropdownVisible);
+  };
+
+  return (
+    <nav>
+        <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+            <a href="https://flowbite.com/" className="flex items-center space-x-3 rtl:space-x-reverse">
+            <img src="https://flowbite.com/docs/images/logo.svg" className="h-8" alt="Flowbite Logo" />
+            <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Logo</span>
+            </a>
+            <div className="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+            <button type="button" className="flex text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
+                <span className="sr-only">Open user menu</span>
+                <img className="w-8 h-8 rounded-full" src="/docs/images/people/profile-picture-3.jpg" alt="user photo" />
+            </button>
+            {/* Dropdown menu */}
+            <div className="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600" id="user-dropdown">
+                <div className="px-4 py-3">
+                <span className="block text-sm text-gray-900 dark:text-white">Leap Chanvuthy</span>
+                <span className="block text-sm text-gray-500 truncate dark:text-gray-400">Chanvuthy.leap@student.cadt.edu.kh</span>
                 </div>
-                <div className="flex justify-center items-center gap-6">
-                    <h4>Home</h4>
-                    <h4>About Us</h4>
-                    <h4>Login</h4>
-                    <button className='flex justify-center items-center gap-2 bg-gradient-to-r from-primary to-pink-500 px-2 py-1 rounded-sm text-white'>
-                        <span><BiUpload/></span>
-                        <span>Upload</span>
-                    </button>
-                </div>
+                <ul className="py-2" aria-labelledby="user-menu-button">
+                <li>
+                    <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Your Books</a>
+                </li>
+                <li>
+                    <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Settings</a>
+                </li>
+                <li>
+                    <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign out</a>
+                </li>
+                </ul>
             </div>
-            {/* Appear in small screen */}
-            <div className='flex justify-between items-center text-xl font-bold lg:hidden md:hidden'>
-                <div>
-                    <h2>Logo</h2>
-                </div>
-                <div>
-                    <button className='flex justify-center items-center gap-2 px-2 rounded-sm text-gray-400'>
-                        <span><BiUpload/></span>
-                        <span>Upload</span>
-                    </button>
-                </div>
-                {openNav ? <HiX className='cursor-pointer' onClick={toggleNav}/> : <GiHamburgerMenu className='cursor-pointer' onClick={toggleNav}/>}
+            <button data-collapse-toggle="navbar-user" type="button" className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-user" aria-expanded="false">
+                <span className="sr-only">Open main menu</span>
+                <svg className="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+                <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 1h15M1 7h15M1 13h15" />
+                </svg>
+            </button>
             </div>
-            <div className={`${openNav ? 'flex' : 'hidden' }  lg:hidden md:hidden justify-center items-center gap-6 py-10`}>
-                <div>
-                    <h4>Home</h4>
-                    <h4>About Us</h4>
-                    <h4>Login</h4>
-                </div>
+            <div className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1 text-gray-400" id="navbar-user">
+                <ul className="flex flex-col items-center font-bold p-4 md:p-0 mt-4  md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 ">
+                    <li className='flex justify-center gap-1 items-center hover:text-pink-600'>
+                        <LuHome/>
+                        <a href="#" className="" aria-current="page">Home</a>
+                    </li>
+                    <li className='flex justify-center gap-1 items-center hover:text-pink-600'>
+                        <BsPatchExclamation/>
+                        <a href="#" className="">About</a>
+                    </li>
+                    <li className="flex justify-center gap-1 items-center hover:text-pink-600">
+                        <RiUpload2Fill/>
+                        <a href='#'>Upload</a>
+                    </li>
+                </ul>
             </div>
         </div>
-     );
-}
- 
+    </nav>
+
+  );
+};
+
 export default Navbar;
