@@ -1,4 +1,5 @@
 import {FcGoogle} from 'react-icons/fc';
+import { Link } from 'react-router-dom';
 
 const Login = () => {
     return ( 
@@ -6,7 +7,7 @@ const Login = () => {
             <div className="flex justify-center items-center text-center p-4">
                 <div className="top-[20%] absolute text-gray-300 ">
                     <h3 className="text-4xl font-bold" >Welcome To Schoolio</h3>
-                    <p>សូមចុះឈ្មោះសម្រាប់ប្រើប្រាស់</p>
+                    <p>បំពេញអុីមែល និងពាក្យសម្ងាត់ដើម្បីប្រើប្រាស់</p>
                     <form className="px-4 py-6" >
                         <div className="flex flex-col text-start py-2 ">
                             <label className="block mb-2 text-sm font-medium text-gray-400 ">សូមបំពេញអុីមែល​ Email​</label>
@@ -20,9 +21,10 @@ const Login = () => {
                             <FcGoogle/>
                             <button>Login With Google</button> 
                         </div>
-                        <div className='py-10 font-bold '>
+                        <div className='pt-10 pb-5 font-bold '>
                             <button className='border-2 border-gray-600 px-8 py-2'>Login</button>
                         </div>
+                        <p>Don't have account ? <Link to='/register' className='text-pink-700'>Register</Link></p>
                     </form>
                 </div>
             </div>
