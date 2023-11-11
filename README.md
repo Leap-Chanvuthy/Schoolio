@@ -26,9 +26,10 @@ __GitHub Repository__
 
 __Project Installation__
 
-   -  "Change directory to schoolio folder" : "cd Schoolio"
-   -  "Install neccessary dependencies" : "npm install"
-   -  "Start sever development environment" : "npm run dev"
+   -  Change directory to schoolio folder : ```cd Schoolio```
+   -  Install neccessary dependencies : ```npm install```
+   -  Start sever development environment : ```npm run dev```
+   -  App is ran on ````https://localhost:5173/```
 
 __Home Page__
 
