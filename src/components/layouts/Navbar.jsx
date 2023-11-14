@@ -4,8 +4,10 @@ import {LuHome} from "react-icons/lu";
 import {BsPatchExclamation} from "react-icons/bs"
 import { Link } from 'react-router-dom';
 import 'flowbite';
+import {auth} from "../../config/firebase";
 
 const Navbar = () => {
+    const avatar = auth.currentUser.email ;
 
     const [avatarDropDown , setAvatarDropDown] = useState(true);
     const openDropDown = () => {
@@ -31,8 +33,8 @@ const Navbar = () => {
             {/* Dropdown menu */}
             <div className={`${avatarDropDown ? 'hidden' : 'block'} absolute z-50 right-5 top-10  my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600" id="user-dropdown`}>
                 <div className="px-4 py-3">
-                <span className="block text-sm text-gray-900 dark:text-white">Leap Chanvuthy</span>
-                <span className="block text-sm text-gray-500 truncate dark:text-gray-400">Chanvuthy.leap@student.cadt.edu.kh</span>
+                <span className="block text-sm text-gray-900 dark:text-white">Welcome</span>
+                <span className="block text-sm text-gray-500 truncate dark:text-gray-400">{avatar}</span>
                 </div>
                 <ul className="py-2" aria-labelledby="user-menu-button">
                 <li>

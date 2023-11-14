@@ -1,21 +1,26 @@
-import { BrowserRouter , Routes , Route } from "react-router-dom";
+import { BrowserRouter , Routes , Route  , Navigate} from "react-router-dom";
 import Home from "./pages/Home";
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
 import Upload from "./pages/Upload";
+import {auth} from "./config/firebase";
 
 function App() {
+  const user = auth.currentUser ;
+
   return (
-    <BrowserRouter>
-      <div>
-          <Routes>  
-            <Route path="/" element={<Home/>} />
-            <Route path="/upload" element={<Upload/>}/>
-            <Route path="/register" element={<Register/>}/>
-            <Route path="/login" element={<Login/>} />
-          </Routes>
-      </div>
-    </BrowserRouter>
+
+      <BrowserRouter>
+        <div>
+            <Routes>  
+              <Route path="/" element={ user ? <Home/> : <Navigate to='/register' />} />
+              <Route path="/upload" element={user? <Upload/> : <Navigate to='/register' />} />
+              <Route path="/register" element={ !user ? <Register/> : <Navigate to="/"/>} />
+              <Route path="/login" element={ !user ? <Login/> : <Navigate to="/" />} />
+            </Routes>
+        </div>
+      </BrowserRouter>
+
   )
 }
 

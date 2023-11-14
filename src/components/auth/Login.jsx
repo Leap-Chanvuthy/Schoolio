@@ -2,6 +2,7 @@ import {FcGoogle} from 'react-icons/fc';
 import { Link } from 'react-router-dom';
 
 const Login = () => {
+
     return ( 
         <div className="w-full h-[100vh] bg-gradient-to-b from-secondary to-primary">
             <div className="flex justify-center items-center text-center p-4">
