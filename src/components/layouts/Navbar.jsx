@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import {RiUpload2Fill} from 'react-icons/ri';
 import {LuHome} from "react-icons/lu";
 import {BsPatchExclamation} from "react-icons/bs"
+import { FaUserCircle } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 import {auth} from "../../config/firebase";
 import {signOut} from 'firebase/auth';
@@ -9,6 +10,7 @@ import {signOut} from 'firebase/auth';
 const Navbar = () => {
     const avatar = auth.currentUser.email ;
     const photoURI = auth.currentUser.photoURL;
+    const user = auth.currentUser;
 
     const logout = async () => {
         try {
