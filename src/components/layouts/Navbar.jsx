@@ -3,11 +3,21 @@ import {RiUpload2Fill} from 'react-icons/ri';
 import {LuHome} from "react-icons/lu";
 import {BsPatchExclamation} from "react-icons/bs"
 import { Link } from 'react-router-dom';
-import 'flowbite';
 import {auth} from "../../config/firebase";
+import {signOut} from 'firebase/auth';
 
 const Navbar = () => {
     const avatar = auth.currentUser.email ;
+    const photoURI = auth.currentUser.photoURL;
+
+    const logout = async () => {
+        try {
+            await signOut(auth);
+        }
+        catch (error){
+            console.log(error);
+        }
+    }
 
     const [avatarDropDown , setAvatarDropDown] = useState(true);
     const openDropDown = () => {
@@ -28,7 +38,7 @@ const Navbar = () => {
             <div className="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
             <button onClick={openDropDown}  type="button" className="flex text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
                 <span className="sr-only">Open user menu</span>
-                <img className="w-8 h-8 rounded-full" src="/docs/images/people/profile-picture-3.jpg"  />
+                <img className="w-8 h-8 rounded-full" src={photoURI}  />
             </button>
             {/* Dropdown menu */}
             <div className={`${avatarDropDown ? 'hidden' : 'block'} absolute z-50 right-5 top-10  my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600" id="user-dropdown`}>
@@ -44,7 +54,7 @@ const Navbar = () => {
                     <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Settings</a>
                 </li>
                 <li>
-                    <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign out</a>
+                    <a  className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white" onClick={logout}>Sign out</a>
                 </li>
                 </ul>
             </div>
@@ -68,6 +78,9 @@ const Navbar = () => {
                     <li className="flex justify-center gap-1 items-center hover:text-pink-600">
                         <RiUpload2Fill/>
                         <Link to='/upload'>Upload</Link>
+                    </li>
+                    <li>
+                        <h4 className='font-bold lg:md:block sm:hidden'>welcome , {avatar}</h4>
                     </li>
                 </ul>
             </div>
