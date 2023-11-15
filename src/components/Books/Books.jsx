@@ -5,7 +5,7 @@ const Book = () => {
     const [searchBooks , setSearchBooks] = useState('');
 
     return ( 
-        <div>
+        <div className="w-full h-full bg-gradient-to-b from-secondary to-primary pt-16 pb-10">
             <div>
                 <h3 className="text-gray-400 text-2xl text-center font-bold ">Find a Book and Get Connected</h3>
                 <h3 className="text-gray-400 text-2xl text-center font-bold pb-6 px-2 pt-2">ស្វែងរកសៀវភៅ​ដែលអ្នកពេញចិត្ត</h3>

@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import {RiUpload2Fill} from 'react-icons/ri';
 import {LuHome} from "react-icons/lu";
-import {BsPatchExclamation} from "react-icons/bs"
-import { FaUserCircle } from "react-icons/fa";
+import { BsJournalBookmark } from "react-icons/bs";
 import { Link } from 'react-router-dom';
 import {auth} from "../../config/firebase";
 import {signOut} from 'firebase/auth';
@@ -10,7 +9,6 @@ import {signOut} from 'firebase/auth';
 const Navbar = () => {
     const avatar = auth.currentUser.email ;
     const photoURI = auth.currentUser.photoURL;
-    const user = auth.currentUser;
 
     const logout = async () => {
         try {
@@ -40,7 +38,7 @@ const Navbar = () => {
             <div className="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
             <button onClick={openDropDown}  type="button" className="flex text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
                 <span className="sr-only">Open user menu</span>
-                <img className="w-8 h-8 rounded-full" src={photoURI}  />
+                <img className="w-8 h-8 rounded-full border-2 border-black" src={photoURI}  />
             </button>
             {/* Dropdown menu */}
             <div className={`${avatarDropDown ? 'hidden' : 'block'} absolute z-50 right-5 top-10  my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600" id="user-dropdown`}>
@@ -68,21 +66,18 @@ const Navbar = () => {
             </button>
             </div>
             <div className={`${openNavbar ? 'hidden' : 'block'} items-center justify-between  w-full md:flex md:w-auto md:order-1 text-gray-400" id="navbar-user`}>
-                <ul className="flex flex-col items-center text-gray-400 font-bold p-4 md:p-0 mt-4  md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 ">
-                    <li className='flex justify-center gap-1 items-center hover:text-pink-600'>
+                <ul className="flex flex-col items-center rounded-md text-black font-bold p-4 md:p-0 mt-4  md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 ">
+                    <li className='flex justify-center gap-1 items-center hover:text-pink-600 '>
                         <LuHome/>
                         <Link to='/'>Home</Link>
                     </li>
                     <li className='flex justify-center gap-1 items-center hover:text-pink-600'>
-                        <BsPatchExclamation/>
-                        <Link to='/about'>About</Link>
+                        <BsJournalBookmark/>
+                        <Link to='/books'>Books</Link>
                     </li>
                     <li className="flex justify-center gap-1 items-center hover:text-pink-600">
                         <RiUpload2Fill/>
                         <Link to='/upload'>Upload</Link>
-                    </li>
-                    <li>
-                        <h4 className='font-bold lg:md:block sm:hidden'>welcome , {avatar}</h4>
                     </li>
                 </ul>
             </div>

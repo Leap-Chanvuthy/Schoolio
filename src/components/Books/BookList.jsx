@@ -1,19 +1,65 @@
 import { useEffect, useState } from "react";
 import { Books } from "../../data/Books";
+import {onSnapshot , collection , getDocs} from "firebase/firestore";
+import {db} from "../../config/firebase";
 
 const BookList = (props) => {
 
-    const [books , setbooks] = useState([]);
+    const [books , setBooks] = useState([]);
     const [loading , setLoading] = useState(true);
+    const booksCollection = collection(db , 'books');
 
-    useEffect(() => {
-        Books.sort(() => Math.random() - 0.5);
-        setbooks(Books);
-        setLoading(false);
-        if(Books.length == 0){
-            return <div><h4>No books</h4></div>
+    // useEffect(() => {
+    //     Books.sort(() => Math.random() - 0.5);
+    //     setbooks(Books);
+    //     setLoading(false);
+    //     if(Books.length == 0){
+    //         return <div><h4>No books</h4></div>
+    //     }
+    // },[])
+
+  //   useEffect(() => {
+  //     const unsubscribe = onSnapshot(booksCollection, (snapshot) => {
+  //         const newData = [];
+  //         try {
+  //             snapshot.forEach((doc) => {
+  //                 newData.push({ ...doc.data(), id: doc.id });
+  //             });
+  //             setBooks(newData);
+  //             setLoading(false);
+  //             console.log(newData); // Move the console.log here
+  //         } catch (error) {
+  //             console.log(error);
+  //         }
+  //     });
+
+  //     return unsubscribe;
+  // }, []);
+
+  //   console.log(newData);
+
+
+  useEffect(() => {
+    const fetchData = async () => {
+        try {
+            const querySnapshot = await getDocs(booksCollection);
+            const newData = [];
+
+            querySnapshot.forEach((doc) => {
+                newData.push({ ...doc.data(), id: doc.id });
+            });
+            newData.sort(() => Math.random * 0.5)
+            setBooks(newData);
+            setLoading(false);
+            console.log(newData);
+        } catch (error) {
+            console.log(error);
         }
-    },[])
+    };
+
+    fetchData();
+}, []);
+
 
     return ( 
         <div>
@@ -27,48 +73,16 @@ const BookList = (props) => {
                   return val;
                 }
               }).map((book) => (
-              <div key={book.id}>
-                  <img src={book.image_url} className="w-[166px] h-[237px]" />
-                  <h4 className="text-center text-gray-400 font-bold w-[166px] h-[71px]">{book.title}</h4>
+              <div key={book.id} className="mb-10 w-[166px] h-[290px] bg-secondary ">
+                  <img src={book.thumbnailFile} className="w-[166px] h-[200px]" />
+                  <div className="flex items-center gap-2 text-sm rounded-full p-2 ">
+                    <img className="w-7 h-7 rounded-full border-2 border-primary" src="https://media.wired.com/photos/650399af65d83ff288720473/1:1/w_1285,h_1285,c_limit/If-Elon-Musk-Had-Been-a-Happy-Child,-Would-He-Still-Be-Launching-Rockets--Business-Redux-h_16082330.jpg"  />
+                    <h4 className="font-semibold text-gray-400">Elon Musk</h4>
+                  </div>
+                  <h4 className="font-semibold text-pink-500 px-2">{book.title}</h4>
               </div>
               ))}
           </div>
-          {/* Pagination */}
-          <nav aria-label="Page navigation example">
-            <ul className="flex items-center -space-x-px h-8 text-sm justify-center">
-              <li>
-                <a href="#" className="flex items-center justify-center px-3 h-8 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
-                  <span className="sr-only">Previous</span>
-                  <svg className="w-2.5 h-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4"/>
-                  </svg>
-                </a>
-              </li>
-              <li>
-                <a href="#" className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">1</a>
-              </li>
-              <li>
-                <a href="#" className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">2</a>
-              </li>
-              <li>
-                <a href="#" aria-current="page" className="z-10 flex items-center justify-center px-3 h-8 leading-tight text-blue-600 border border-blue-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white">3</a>
-              </li>
-              <li>
-                <a href="#" className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">4</a>
-              </li>
-              <li>
-                <a href="#" className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">5</a>
-              </li>
-              <li>
-                <a href="#" className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
-                  <span className="sr-only">Next</span>
-                  <svg className="w-2.5 h-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
-                  </svg>
-                </a>
-              </li>
-            </ul>
-          </nav>
         </div>
      );
 }
