@@ -82,14 +82,13 @@ const Upload = () => {
       setPDF(null);
       setThumbnail(null);
       setThumbnailPreview(null);
-      toast('Book uploaded !');
-
-
+      addBook.reset();
     } 
     catch (error) {
       console.error('Error uploading the form', error);
     }
   };
+
 
   return (
     <div className="w-full h-full bg-gradient-to-b from-secondary to-primary">

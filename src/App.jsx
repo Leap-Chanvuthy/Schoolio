@@ -4,7 +4,7 @@ import Register from './components/auth/Register';
 import Login from './components/auth/Login';
 import Upload from './pages/Upload';
 import Books from './components/Books/Books';
-import List from './test/List';
+import BookDetail from './components/Books/BookDetail';
 import { auth } from './config/firebase';
 import { useEffect, useState } from 'react';
 import Navbar from './components/layouts/Navbar';
@@ -39,6 +39,8 @@ function App() {
           <Route path="/" element={user ? <Home /> : <Navigate to="/register" />} />
           <Route path="/upload" element={user ? <Upload /> : <Navigate to="/register" />} />
           <Route path='/books' element={user ? <Books /> : <Navigate to="/register" />} />
+          <Route path='/book/:bookId' element={user ? <BookDetail /> : <Navigate to="/register" />} />
+          <Route path='/books/book/:bookId' element={user ? <BookDetail /> : <Navigate to="/register" />} />
           <Route path="/register" element={!user ? <Register /> : <Navigate to="/" />} />
           <Route path="/login" element={!user ? <Login /> : <Navigate to="/" />} />
         </Routes>

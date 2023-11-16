@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
+import {Link} from 'react-router-dom';
 import { Books } from "../../data/Books";
-import {onSnapshot , collection , getDocs} from "firebase/firestore";
+import {collection , getDocs} from "firebase/firestore";
 import {db} from "../../config/firebase";
 
 const BookList = (props) => {
@@ -43,14 +44,18 @@ const BookList = (props) => {
                   return val;
                 }
               }).map((book) => (
-              <div key={book.id} className="mb-10 w-[166px] h-[290px] bg-secondary overflow-hidden ">
-                  <img src={book.thumbnailFile} className="w-[166px] h-[200px]" />
-                  <div className="flex items-center gap-2 text-sm rounded-full p-2 ">
-                    <img className="w-7 h-7 rounded-full border-2 border-primary" src="https://uxwing.com/wp-content/themes/uxwing/download/peoples-avatars/avatar-icon.png"  />
-                    <h4 className="font-semibold text-gray-500">Unkown user</h4>
-                  </div>
-                  <h4 className="font-semibold text-white px-2 text-center">{book.title}</h4>
-              </div>
+                <div key={book.id} className="mb-10 w-[200px] h-[340px] bg-secondary">
+                  <Link to={`book/${book.id}`}>
+                    <img src={book.thumbnailFile} className="w-full h-[70%]" />
+                    <div className="flex items-center gap-2 text-sm rounded-full p-2 ">
+                      <div className="flex justify-center items-center gap-2 px-2">
+                        <img className="w-7 h-7 rounded-full border-2 border-primary" src="https://uxwing.com/wp-content/themes/uxwing/download/peoples-avatars/avatar-icon.png"  />
+                        <h4 className="font-semibold text-gray-500">{book.category}</h4>
+                      </div>
+                    </div>
+                    <h4 className="font-semibold text-white px-2 text-center">{book.title}</h4>
+                  </Link>
+                </div>
               ))}
           </div>
         </div>
