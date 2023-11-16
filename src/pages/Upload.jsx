@@ -1,8 +1,9 @@
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { auth, storage } from '../config/firebase';
-import { collection, addDoc } from 'firebase/firestore';
+import { collection, addDoc , doc , getDoc } from 'firebase/firestore';
 import { db } from '../config/firebase';
 import { useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
 
 const Upload = () => {
   const [title, setTitle] = useState('');
@@ -71,6 +72,8 @@ const Upload = () => {
         timestamp: new Date(),
       });
 
+      
+
       console.log('Book added');
       setTitle('');
       setAuthor('');
@@ -79,6 +82,9 @@ const Upload = () => {
       setPDF(null);
       setThumbnail(null);
       setThumbnailPreview(null);
+      toast('Book uploaded !');
+
+
     } 
     catch (error) {
       console.error('Error uploading the form', error);
@@ -87,6 +93,7 @@ const Upload = () => {
 
   return (
     <div className="w-full h-full bg-gradient-to-b from-secondary to-primary">
+    <ToastContainer />
       <h3 className="text-center text-2xl font-bold text-gray-400 pt-8 pb-4">Upload and Attach Files</h3>
       <h3 className="text-center text-xl font-bold text-gray-400 pb-4">ចែករំលែកសៀវភៅរបស់អ្នក</h3>
       <div className="flex justify-center items-center">

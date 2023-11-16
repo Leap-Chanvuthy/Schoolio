@@ -4,9 +4,11 @@ import Register from './components/auth/Register';
 import Login from './components/auth/Login';
 import Upload from './pages/Upload';
 import Books from './components/Books/Books';
+import List from './test/List';
 import { auth } from './config/firebase';
 import { useEffect, useState } from 'react';
 import Navbar from './components/layouts/Navbar';
+import Footer from './components/layouts/Footer';
 
 function App() {
   const [user, setUser] = useState(null);
@@ -41,6 +43,7 @@ function App() {
           <Route path="/login" element={!user ? <Login /> : <Navigate to="/" />} />
         </Routes>
       </div>
+      {user && <Footer/>}
     </BrowserRouter>
   );
 }
