@@ -1,8 +1,11 @@
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { auth, storage } from '../config/firebase';
-import { collection, addDoc , doc , getDoc } from 'firebase/firestore';
+import { collection, addDoc } from 'firebase/firestore';
 import { db } from '../config/firebase';
 import { useState } from 'react';
+import {useNavigate} from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Upload = () => {
   const [title, setTitle] = useState('');
@@ -12,6 +15,7 @@ const Upload = () => {
   const [PDF, setPDF] = useState(null);
   const [thumbnail, setThumbnail] = useState(null);
   const [thumbnailPreview, setThumbnailPreview] = useState(null);
+  const navigate = useNavigate();
 
   // hanlde errors state
   const [error , setError] = useState("");
@@ -71,8 +75,6 @@ const Upload = () => {
         timestamp: new Date(),
       });
 
-      
-
       console.log('Book added');
       setTitle('');
       setAuthor('');
@@ -81,15 +83,27 @@ const Upload = () => {
       setPDF(null);
       setThumbnail(null);
       setThumbnailPreview(null);
+
+      toast.success('Book added successfully', {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose : 500,
+      });
+
+      navigate('/');
+  
     } 
     catch (error) {
       console.error('Error uploading the form', error);
+      toast.error('Error uploading the book', {
+        position: toast.POSITION.TOP_CENTER,
+      });
     }
   };
 
 
   return (
     <div className="w-full h-full bg-gradient-to-b from-secondary to-primary">
+      <ToastContainer />
       <h3 className="text-center text-2xl font-bold text-gray-400 pt-8 pb-4">Upload and Attach Files</h3>
       <h3 className="text-center text-xl font-bold text-gray-400 pb-4">ចែករំលែកសៀវភៅរបស់អ្នក</h3>
       <div className="flex justify-center items-center">
@@ -158,8 +172,8 @@ const Upload = () => {
           </div>
           <div className="flex flex-col text-start py-2">
             <label className="block mb-2 text-sm font-medium text-gray-400">អំពីសៀវភៅ Description (Optional)</label>
-            <input
-              className="bg-gray-50 border h-28 border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            <textarea
+              className="bg-gray-50 border  border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               type="text"
               onChange={(e) => setDescription(e.target.value)}
             />

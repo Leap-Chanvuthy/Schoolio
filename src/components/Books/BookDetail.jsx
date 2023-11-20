@@ -60,11 +60,10 @@ const BookDetails = () => {
   
     return (
       <div className="w-full h-full bg-gradient-to-b from-secondary to-primary py-10 grid lg:grid-cols-2 md:sm:grid-cols-1 justify-items-center">
-        <div>
-            <img src={book.thumbnailFile} className="w-[230px] h-[350px]" />
+        <div className='w-[230px] h-[350px] pb-6'>
+            <img src={book.thumbnailFile} className="w-full h-full" />
             <div className='text-start py-2'>
-                <h3 className='font-semibold text-xl text-center text-pink-700'>{book.title}</h3>
-                
+                <h3 className='font-semibold text-xl text-center text-pink-700'>{book.title}</h3>  
             </div>
         </div>
         <div className='px-6'>
