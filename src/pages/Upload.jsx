@@ -3,7 +3,6 @@ import { auth, storage } from '../config/firebase';
 import { collection, addDoc , doc , getDoc } from 'firebase/firestore';
 import { db } from '../config/firebase';
 import { useState } from 'react';
-import { ToastContainer, toast } from 'react-toastify';
 
 const Upload = () => {
   const [title, setTitle] = useState('');
@@ -82,7 +81,6 @@ const Upload = () => {
       setPDF(null);
       setThumbnail(null);
       setThumbnailPreview(null);
-      addBook.reset();
     } 
     catch (error) {
       console.error('Error uploading the form', error);
@@ -92,7 +90,6 @@ const Upload = () => {
 
   return (
     <div className="w-full h-full bg-gradient-to-b from-secondary to-primary">
-    <ToastContainer />
       <h3 className="text-center text-2xl font-bold text-gray-400 pt-8 pb-4">Upload and Attach Files</h3>
       <h3 className="text-center text-xl font-bold text-gray-400 pb-4">ចែករំលែកសៀវភៅរបស់អ្នក</h3>
       <div className="flex justify-center items-center">
@@ -162,7 +159,7 @@ const Upload = () => {
           <div className="flex flex-col text-start py-2">
             <label className="block mb-2 text-sm font-medium text-gray-400">អំពីសៀវភៅ Description (Optional)</label>
             <input
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              className="bg-gray-50 border h-28 border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               type="text"
               onChange={(e) => setDescription(e.target.value)}
             />
