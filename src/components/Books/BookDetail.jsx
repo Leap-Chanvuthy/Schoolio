@@ -6,6 +6,8 @@ import { db } from '../../config/firebase';
 import { storage } from '../../config/firebase';
 import {getDownloadURL , ref} from 'firebase/storage';
 import { FaFilePdf } from "react-icons/fa6";
+import formatDistanceToNow from 'date-fns/formatDistanceToNow';
+
 
 const BookDetails = () => {
     const  {bookId}  = useParams();
@@ -71,6 +73,7 @@ const BookDetails = () => {
             <h3 className='w-full h-[150px] overflow-y-scroll mb-8 py-2 text-gray-300'>{book.description}</h3>
             <p className='text-gray-400 font-bold py-2'>អ្នកនិពន្ធ ​(Author) : <span className='text-pink-700'>{book.author}</span></p>
             <p className='text-gray-400 font-bold py-2'>ប្រេភេទសៀវភៅ (Type of Book) : <span className='text-pink-700'>{book.category}</span></p>
+            <p className='text-gray-400 font-bold py-2'>បានបង្ហោះ​ : (Published) <span className='text-pink-700 font-light '>{formatDistanceToNow(new Date(book.timestamp.toMillis()), {addSuffix: true,})}</span></p>
             <button onClick={() => downloadFile(`books/${book.bookFile}`)} className='text-gray-300 px-3 py-2 bg-pink-700 my-3 font-bold flex justify-center items-center gap-2'> <FaFilePdf className='text-secondary'/> Download Book</button>
         </div>
       </div>
